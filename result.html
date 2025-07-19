@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Game Over - Pick-a-Mole</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to top right, maroon, #8B0000);
+      font-family: 'Comic Sans MS', cursive;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: white;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .score {
+      font-size: 36px;
+      margin-bottom: 40px;
+    }
+
+    .play-again-btn {
+      padding: 15px 30px;
+      font-size: 20px;
+      background-color: #fff;
+      color: maroon;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .play-again-btn:hover {
+      background-color: #f2f2f2;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+<audio id="bg-music" src="minecraft-fortnite-roblox-background-music-368024.mp3" preload="auto" loop></audio>
+
+<h1>Game Over!</h1>
+<div class="score">Your Score: <span id="final-score">0</span></div>
+<button class="play-again-btn" onclick="location.href='game.html'">Play Again</button>
+
+<script>
+  window.onload = () => {
+    // Display score from localStorage
+    const savedScore = localStorage.getItem("finalScore") || 0;
+    document.getElementById("final-score").textContent = savedScore;
+
+    // Play background music if allowed
+    const shouldPlay = localStorage.getItem("playMusic");
+    const music = document.getElementById("bg-music");
+    if (shouldPlay === "yes") {
+      music.play().catch(err => console.warn("Autoplay blocked:", err));
+    }
+  };
+</script>
+
+</body>
+</html>

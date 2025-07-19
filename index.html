@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pick-a-Mole</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to top right, #800000, #550000); /* Maroon gradient */
+      font-family: 'Comic Sans MS', cursive;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    h1 {
+      color: white;
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .mole {
+      width: 250px;
+      animation: bounce 2s infinite ease-in-out;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      border-radius: 10px;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-30px); }
+    }
+
+    .mock-text {
+      margin-top: 20px;
+      font-size: 24px;
+      color: #fff;
+      animation: shake 1.2s infinite;
+    }
+
+    @keyframes shake {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(-1deg); }
+      50% { transform: rotate(1deg); }
+      75% { transform: rotate(-1deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    .start-btn {
+      margin-top: 40px;
+      padding: 14px 30px;
+      font-size: 20px;
+      background-color: #2f2f2f;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s ease;
+    }
+
+    .start-btn:hover {
+      background-color: #1f1f1f;
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Welcome to Pick-a-Mole!</h1>
+  <img src="mole.png" alt="Mole" class="mole">
+  <div class="mock-text">Hehe... think you can hit me?</div>
+
+  <button class="start-btn" onclick="startGame()">Start Game</button>
+
+  <!-- Background Music -->
+  <audio id="bg-music" src="minecraft-fortnite-roblox-background-music-368024.mp3" preload="auto"></audio>
+
+  <script>
+  function startGame() {
+    const music = document.getElementById("bg-music");
+
+    music.play().then(() => {
+      localStorage.setItem("playMusic", "yes");
+      setTimeout(() => {
+        window.location.href = "game.html";
+      }, 500);
+    }).catch(() => {
+      localStorage.setItem("playMusic", "no");
+      window.location.href = "game.html";
+    });
+  }
+</script>
+
+
+</body>
+</html>
+
